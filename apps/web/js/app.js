@@ -146,27 +146,79 @@ R.forEach((r,i)=>{
  const addons=r.menuKey===undefined?MENU_ADDONS[i]||[]:CITY_MENU_ADDONS[r.menuKey]||[];
  r.m=[...r.m.map(m=>[m[0],m[1],m[2]||DS[i]?.[r.m.indexOf(m)]||"A house favorite made with fresh ingredients",m[3]??VEG.has(m[0])]),...addons,...SIDES];
 });
+const RESTAURANT_PHOTOS=[
+ "photo-1550966871-3ed3cdb5ed0c",
+ "photo-1517248135467-4c7edcad34c4",
+ "photo-1559339352-11d035aa65de",
+ "photo-1555396273-367ea4eb4db5",
+ "photo-1414235077428-338989a2e8c0",
+ "photo-1540189549336-e6e99c3679fe",
+ "photo-1563245372-f21724e3856d",
+ "photo-1512621776951-a57141f2eefd",
+ "photo-1529692236671-f1f6cf9683ba",
+ "photo-1574071318508-1cdbab80d002",
+ "photo-1544025162-d76694265947",
+ "photo-1547592180-85f173990554",
+ "photo-1565299507177-b0ac66763828",
+ "photo-1593560708920-61dd98c46a4e",
+ "photo-1551183053-bf91a1d81141",
+ "photo-1546549032-9571cd6b27df",
+ "photo-1603894584373-5ac82b2ae398",
+ "photo-1567337710282-00832b415979",
+ "photo-1585937421612-70a008356fbe",
+ "photo-1555126634-323283e090fa",
+ "photo-1569718212165-3a8278d5f624",
+ "photo-1601050690597-df0568f70950",
+ "photo-1578985545062-69928b1d9587",
+ "photo-1488477181946-6428a0291777",
+ "photo-1544145945-f90425340c7e",
+ "photo-1555939594-58d7cb561ad1",
+ "photo-1546069901-ba9599a7e63c",
+ "photo-1513104890138-7c749659a591",
+ "photo-1604382355076-af4b0eb60143",
+ "photo-1565299624946-b28f40a0ae38",
+ "photo-1529042410759-befb1204b468",
+ "photo-1515377905703-c4788e51af15",
+ "photo-1504674900247-0877df9cc836",
+ "photo-1515003197210-e0cd71810b5f",
+ "photo-1521017432531-fbd92d768814",
+ "photo-1504754524776-8f4f37790ca0",
+ "photo-1473093295043-cdd812d0e601",
+ "photo-1432139555190-58524dae6a55",
+ "photo-1466978913421-dad2ebd01d17",
+ "photo-1498654896293-37aacf113fd9",
+ "photo-1511690743698-d9d85f2fbf38",
+ "photo-1528605248644-14dd04022da1",
+ "photo-1552566626-52f8b828add9",
+ "photo-1495474472287-4d71bcdd2085",
+ "photo-1500530855697-b586d89ba3ee",
+ "photo-1528712306091-ed0763094c98",
+ "photo-1464346303505-28f6684d7f0b",
+ "photo-1506464519650-86ab6e89b0e7",
+ "photo-1496377263444-052d30527f3d"
+];
+const restaurantPhotoForIndex=index=>RESTAURANT_PHOTOS[(index*7+3)%RESTAURANT_PHOTOS.length];
 const SCENES=[
- ["wood-fired pizzeria","A little Italy, right around the corner.","Hand-stretched dough, blistered crusts and long-table evenings.","photo-1550966871-3ed3cdb5ed0c"],
- ["Indian supper club","Big-hearted Indian cooking.","Slow-simmered favorites, fragrant spices and a little something sweet.","photo-1517248135467-4c7edcad34c4"],
- ["neighborhood taqueria","A bright, lively taqueria.","Smoky chiles, fresh tortillas and the best kind of messy lunch.","photo-1559339352-11d035aa65de"],
- ["late-night ramen bar","A bowl worth slowing down for.","Long-simmered broth, springy noodles and a seat at the counter.","photo-1555396273-367ea4eb4db5"],
- ["Ethiopian sharing table","Gather close. Pass the injera.","A generous spread of slow-cooked stews, lentils and warm spice.","photo-1414235077428-338989a2e8c0"],
- ["Bangkok street-food kitchen","A little heat, a lot of flavor.","Fresh herbs, wok-fired favorites and sweet mango to finish.","photo-1540189549336-e6e99c3679fe"],
- ["Korean comfort kitchen","Comfort food with a Korean kick.","Sizzling rice bowls, deep savory flavor and a little crunch.","photo-1563245372-f21724e3856d"],
- ["Mediterranean mezze house","Make room for one more plate.","Olive oil, bright herbs, warm bread and a table made for sharing.","photo-1512621776951-a57141f2eefd"],
- ["Carolina smokehouse","Low and slow, Carolina style.","Smoky favorites, familiar sides and something sweet after.","photo-1529692236671-f1f6cf9683ba"],
- ["Chinese dumpling house","Folded by hand. Made to share.","Steamy baskets, silky noodles and the comfort of a familiar table.","photo-1563245372-f21724e3856d"],
- ["Durham smokehouse","Bull City barbecue, low and slow.","Smoked favorites, Carolina sides and room to stay a while.","photo-1544025162-d76694265947"],
- ["Ninth Street noodle shop","A warm bowl on Ninth Street.","Bright herbs, fragrant broth and noodles made for a long lunch.","photo-1547592180-85f173990554"],
- ["Queen City arepera","Venezuelan comfort, made by hand.","Golden corn cakes, slow-cooked fillings and a little taste of home.","photo-1565299507177-b0ac66763828"],
- ["South End taco room","Tacos, salsa and one more round.","Fresh tortillas, smoky fillings and bright, punchy salsas.","photo-1593560708920-61dd98c46a4e"]
-].map(([type,headline,story,photo])=>({type,headline,story,photo}));
+ ["wood-fired pizzeria","A little Italy, right around the corner.","Hand-stretched dough, blistered crusts and long-table evenings."],
+ ["Indian supper club","Big-hearted Indian cooking.","Slow-simmered favorites, fragrant spices and a little something sweet."],
+ ["neighborhood taqueria","A bright, lively taqueria.","Smoky chiles, fresh tortillas and the best kind of messy lunch."],
+ ["late-night ramen bar","A bowl worth slowing down for.","Long-simmered broth, springy noodles and a seat at the counter."],
+ ["Ethiopian sharing table","Gather close. Pass the injera.","A generous spread of slow-cooked stews, lentils and warm spice."],
+ ["Bangkok street-food kitchen","A little heat, a lot of flavor.","Fresh herbs, wok-fired favorites and sweet mango to finish."],
+ ["Korean comfort kitchen","Comfort food with a Korean kick.","Sizzling rice bowls, deep savory flavor and a little crunch."],
+ ["Mediterranean mezze house","Make room for one more plate.","Olive oil, bright herbs, warm bread and a table made for sharing."],
+ ["Carolina smokehouse","Low and slow, Carolina style.","Smoky favorites, familiar sides and something sweet after."],
+ ["Chinese dumpling house","Folded by hand. Made to share.","Steamy baskets, silky noodles and the comfort of a familiar table."],
+ ["Durham smokehouse","Bull City barbecue, low and slow.","Smoked favorites, Carolina sides and room to stay a while."],
+ ["Ninth Street noodle shop","A warm bowl on Ninth Street.","Bright herbs, fragrant broth and noodles made for a long lunch."],
+ ["Queen City arepera","Venezuelan comfort, made by hand.","Golden corn cakes, slow-cooked fillings and a little taste of home."],
+ ["South End taco room","Tacos, salsa and one more round.","Fresh tortillas, smoky fillings and bright, punchy salsas."]
+].map(([type,headline,story], index)=>({type,headline,story,photo:restaurantPhotoForIndex(index)}));
 SCENES.push(
- {...SCENES[5],type:"Durham Thai kitchen",headline:"A little heat, a lot of heart.",story:"Fresh herbs, wok-fired favorites and bright, fragrant curries."},
- {...SCENES[8],type:"Bull City smokehouse",headline:"Smoke, slow time and Carolina sides.",story:"Fire-kissed comfort with a little Durham character."},
- {...SCENES[0],type:"NoDa neighborhood pizzeria",headline:"A Charlotte table, straight from the oven.",story:"Blistered crusts, local ingredients and easygoing Italian favorites."},
- {...SCENES[6],type:"Korean comfort kitchen",headline:"A little Seoul in South End.",story:"Savory rice bowls, crisp bites and the pleasure of sharing."}
+ {...SCENES[5],type:"Durham Thai kitchen",headline:"A little heat, a lot of heart.",story:"Fresh herbs, wok-fired favorites and bright, fragrant curries.",photo:restaurantPhotoForIndex(18)},
+ {...SCENES[8],type:"Bull City smokehouse",headline:"Smoke, slow time and Carolina sides.",story:"Fire-kissed comfort with a little Durham character.",photo:restaurantPhotoForIndex(19)},
+ {...SCENES[0],type:"NoDa neighborhood pizzeria",headline:"A Charlotte table, straight from the oven.",story:"Blistered crusts, local ingredients and easygoing Italian favorites.",photo:restaurantPhotoForIndex(20)},
+ {...SCENES[6],type:"Korean comfort kitchen",headline:"A little Seoul in South End.",story:"Savory rice bowls, crisp bites and the pleasure of sharing.",photo:restaurantPhotoForIndex(21)}
 );
 const FOOD_PHOTOS={
  chinese:["photo-1563245372-f21724e3856d","photo-1569718212165-3a8278d5f624","photo-1555126634-323283e090fa"],
@@ -181,11 +233,65 @@ const FOOD_PHOTOS={
  dessert:["photo-1578985545062-69928b1d9587","photo-1488477181946-6428a0291777","photo-1565958011703-44f9829ba187"],
  drink:["photo-1544145945-f90425340c7e","photo-1488477181946-6428a0291777","photo-1565958011703-44f9829ba187"]
 };
+const RESTAURANT_PHOTOS_BY_CUISINE={
+ "Italian":[...FOOD_PHOTOS.pizza,...FOOD_PHOTOS.pasta,...FOOD_PHOTOS.dessert],
+ "Indian":[...FOOD_PHOTOS.curry,"photo-1728910156510-77488f19b152"],
+ "Mexican":[...FOOD_PHOTOS.taco,"photo-1599974579688-8dbdd335c77f","photo-1565299585323-38d6b0865b47"],
+ "Japanese":[...FOOD_PHOTOS.noodle,...FOOD_PHOTOS.dumpling],
+ "Ethiopian":[],
+ "Thai":["photo-1569718212165-3a8278d5f624","photo-1574484284002-952d92456975","photo-1540189549336-e6e99c3679fe","photo-1585937421612-70a008356fbe"],
+ "Korean":["photo-1553163147-622ab57be1c7","photo-1590301157890-4810ed352733","photo-1600289031464-74d374b64991"],
+ "Mediterranean":[...FOOD_PHOTOS.greens],
+ "Southern BBQ":[...FOOD_PHOTOS.bbq,"photo-1555939594-58d7cb561ad1","photo-1508615263227-c5d58c1e5821"],
+ "Southern":[...FOOD_PHOTOS.bbq,"photo-1555939594-58d7cb561ad1","photo-1508615263227-c5d58c1e5821"],
+ "Chinese":[...FOOD_PHOTOS.chinese,...FOOD_PHOTOS.dumpling],
+ "Vietnamese":[...FOOD_PHOTOS.noodle],
+ "Venezuelan":[]
+};
+const PREMIUM_RESTAURANT_PHOTOS=[
+ "photo-1550966871-3ed3cdb5ed0c",
+ "photo-1517248135467-4c7edcad34c4",
+ "photo-1559339352-11d035aa65de",
+ "photo-1555396273-367ea4eb4db5",
+ "photo-1414235077428-338989a2e8c0",
+ "photo-1552566626-52f8b828add9",
+ "photo-1521017432531-fbd92d768814",
+ "photo-1528605248644-14dd04022da1",
+ "photo-1535938995-b63df88b6c18",
+ "photo-1578474846511-04ba529f0b88",
+ "photo-1590846406792-0adc7f938f1d",
+ "photo-1652195960911-c9f55224bd89",
+ "photo-1549488344-1f9b8d2bd1f3",
+ "photo-1695094411862-0e047fbddcb1",
+ "photo-1469234496837-d0101f54be3e",
+ "photo-1525193612562-0ec53b0e5d7c",
+ "photo-1666032119084-82351976a922",
+ "photo-1727352037068-9091d4789738",
+ "photo-1723744910051-da35a92321af",
+ "photo-1782983595134-13e7b069545d",
+ "photo-1756397481872-ed981ef72a51",
+ "photo-1776993298456-98c71c0e177e",
+ "photo-1782983595342-5c4c2f36d108",
+ "photo-1535938995-b63df88b6c18",
+ "photo-1590660105340-840e6929412e"
+];
+const assignedRestaurantPhotos=new Set();
+function restaurantPhotoFor(r){
+ const candidates=[
+  ...(RESTAURANT_PHOTOS_BY_CUISINE[r.c]||[]),
+  ...PREMIUM_RESTAURANT_PHOTOS
+ ];
+ const photo=candidates.find(id=>!assignedRestaurantPhotos.has(id));
+ if(!photo)throw new Error(`No unique restaurant image is available for ${r.n}.`);
+ assignedRestaurantPhotos.add(photo);
+ return photo;
+}
 const FOOD_STYLE=["pizza","curry","taco","noodle","greens","noodle","dumpling","greens","bbq","dumpling","bbq","noodle","taco","taco","curry","bbq","pizza","dumpling"];
 const STYLE_BY_MENU=["pizza","curry","taco","noodle","greens","curry","dumpling","greens","bbq","dumpling","noodle"];
 R.forEach((r,i)=>{
  const menuKey=r.menuKey??i,sceneTemplate=SCENES[menuKey===10?11:menuKey]||SCENES[0];
- r.scene=SCENES[i]||{...sceneTemplate,type:`${r.c} neighborhood kitchen`,headline:`A neighborhood table in ${r.city}.`,story:`Locally loved ${r.c.toLowerCase()} favorites, made for sharing.`};
+ const photo=restaurantPhotoFor(r);
+ r.scene={...(SCENES[i]||sceneTemplate),type:(SCENES[i]||sceneTemplate).type||`${r.c} neighborhood kitchen`,headline:(SCENES[i]||sceneTemplate).headline||`A neighborhood table in ${r.city}.`,story:(SCENES[i]||sceneTemplate).story||`Locally loved ${r.c.toLowerCase()} favorites, made for sharing.`,photo};
  r.foodStyle=FOOD_STYLE[i]||STYLE_BY_MENU[menuKey]||"greens";
 });
 function imageUrl(id,width){return`https://images.unsplash.com/${id}?auto=format&fit=crop&w=${width}&q=82`}
