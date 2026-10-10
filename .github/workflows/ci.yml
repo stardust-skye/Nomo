@@ -1,0 +1,59 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  web-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: package-lock.json
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:ci
+      - name: Calculate live test and coverage metrics
+        if: always()
+        run: node scripts/summarize-tests.js
+      - name: Publish metrics to job summary
+        if: always()
+        run: |
+          node -e "const s=require('./test-results/ci-summary.json'); console.log('## Browser test metrics\n\n| Metric | Result |\n|---|---:|\n| Tests passed | '+s.passed+' / '+s.total+' |\n| Failed | '+s.failed+' |\n| Skipped | '+s.skipped+' |\n| JavaScript function coverage | '+s.coverage+'% |')" >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: playwright-results
+          path: |
+            test-results
+            playwright-report
+      - name: Update live README badge data
+        if: always() && github.event_name == 'push' && github.ref == 'refs/heads/main'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          rm -rf ci-metrics
+          git clone --quiet --depth 1 --branch ci-metrics "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" ci-metrics || {
+            mkdir ci-metrics
+            cd ci-metrics
+            git init -q
+            git checkout -q --orphan ci-metrics
+            git remote add origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          }
+          cp test-results/ci-tests.json ci-metrics/ci-tests.json
+          cp test-results/ci-coverage.json ci-metrics/ci-coverage.json
+          cd ci-metrics
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add ci-tests.json ci-coverage.json
+          git commit -m "chore: update CI metrics" || true
+          git push origin HEAD:ci-metrics --force

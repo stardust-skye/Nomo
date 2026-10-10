@@ -1,5 +1,12 @@
 # Nomo
 
+[![CI](https://github.com/stardust-skye/nomo/actions/workflows/ci.yml/badge.svg)](https://github.com/stardust-skye/nomo/actions/workflows/ci.yml)
+[![Tests](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/stardust-skye/nomo/ci-metrics/ci-tests.json)](https://github.com/stardust-skye/nomo/actions/workflows/ci.yml)
+[![JavaScript coverage](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/stardust-skye/nomo/ci-metrics/ci-coverage.json)](https://github.com/stardust-skye/nomo/actions/workflows/ci.yml)
+
+The test and coverage badges are updated by the `main` branch CI workflow from the
+JUnit and V8 coverage reports produced by the tests on the latest commit.
+
 Nomo is a gamified restaurant discovery platform that turns eating out into an ongoing journey rather than a series of disconnected restaurant searches — combining personalized recommendations, location-based exploration, gamification, and rewards.
 
 **Core loop:** Discover → Visit → Complete → Earn → Unlock → Explore Further
