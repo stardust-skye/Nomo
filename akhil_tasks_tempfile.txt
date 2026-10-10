@@ -1,0 +1,2 @@
+add tests and github tests icon in markdown - number of tests and coverage badge
+integrate tests in CI
