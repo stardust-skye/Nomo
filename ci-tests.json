@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
   "label": "tests",
-  "message": "33/33 passed",
+  "message": "48/48 passed",
   "color": "brightgreen",
-  "total": 33,
-  "passed": 33,
+  "total": 48,
+  "passed": 48,
   "failed": 0,
   "skipped": 0,
   "coverage": 36,
-  "generatedAt": "2026-10-11T17:19:31.204Z"
+  "generatedAt": "2026-10-12T20:23:52.567Z"
 }
