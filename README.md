@@ -60,7 +60,9 @@ Before opening a PR, read [`CONTRIBUTING.md`](./CONTRIBUTING.md) — it covers b
 
 ## Documentation
 
-Comprehensive technical documentation is built with Sphinx:
+Comprehensive technical documentation is built with Sphinx and is present at the project's documentation site: https://stardust-skye.github.io/Nomo/
+
+Locally, you can build and serve the documentation with the following commands:
 
 * **Build documentation locally:**
   ```bash
@@ -81,3 +83,9 @@ Key documentation chapters:
 ## License
 
 This project is licensed under the [MIT License](./LICENSE).
+
+## AI Use and Human Review
+
+Nomo supports transparent AI-assisted development. Agent instructions and applicable review-bot configurations are maintained in the repository. Contributors are expected to review AI-assisted changes, run relevant tests, and disclose material AI assistance in pull requests.
+
+Automated review does not replace human judgment. See [AI Use Disclosure](docs/AI_USAGE.md) for the project's policy and verification practices.
