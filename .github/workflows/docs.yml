@@ -50,7 +50,7 @@ jobs:
             docs/_build/html
 
       - name: Configure GitHub Pages
-        uses: actions/configure-pages@v5
+        uses: actions/configure-pages@v6
 
       - name: Upload documentation
         uses: actions/upload-pages-artifact@v4
