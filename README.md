@@ -1,5 +1,6 @@
 # Nomo
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23540486.svg)](https://doi.org/10.5281/zenodo.23540486)
 [![CI](https://github.com/stardust-skye/nomo/actions/workflows/ci.yml/badge.svg)](https://github.com/stardust-skye/nomo/actions/workflows/ci.yml)
 [![Tests](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/stardust-skye/nomo/ci-metrics/ci-tests.json)](https://github.com/stardust-skye/nomo/actions/workflows/ci.yml)
 [![JavaScript coverage](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/stardust-skye/nomo/ci-metrics/ci-coverage.json)](https://github.com/stardust-skye/nomo/actions/workflows/ci.yml)
